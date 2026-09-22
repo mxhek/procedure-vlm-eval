@@ -11,6 +11,15 @@ It is a small-scale version of a real problem: an AI system watching someone car
 ## Task
 
 Given one frame from a video of someone **making tea**, predict which step of the procedure is shown.
+
+
+| Step label | Meaning |
+|---|---|
+| `take_cup` | Getting the cup |
+| `add_teabag` | Putting the teabag in the cup |
+| `pour_water` | Pouring hot water |
+
+
 The model must reply in a fixed JSON schema:
 
 ```json
