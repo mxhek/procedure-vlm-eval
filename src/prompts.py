@@ -14,10 +14,11 @@ OUTPUT_INSTRUCTIONS = (
 )
 
 STEP_DESCRIPTIONS = """Descriptions of each step:
-- take_cup: the person reaches for, picks up, or puts down an empty cup or mug. This usually happens at the start, before anything is in the cup.
+- take_cup: the person reaches for, picks up, or puts down an empty cup or mug.
 - add_teabag: the person takes a teabag from a box or packet and puts it in the cup. This can include opening the box or handling the teabag.
-- pour_water: the person pours hot water from a kettle or pot into the cup.
-The steps usually happen in the order take_cup, add_teabag, pour_water, but not always."""
+- pour_water: the person pours hot water from a kettle or pot into the cup."""
+
+ORDERING_HINT = "The steps usually happen in the order take_cup, add_teabag, pour_water, but not always."
 
 QUESTION_SINGLE = "Which step of making tea is the person doing in this frame?"
 QUESTION_PREV = (
@@ -26,10 +27,10 @@ QUESTION_PREV = (
 )
 
 
-def _build(question, with_descriptions):
+def _build(question, with_descriptions, with_ordering=False):
     parts = [question]
     if with_descriptions:
-        parts.append(STEP_DESCRIPTIONS)
+        parts.append(STEP_DESCRIPTIONS + ("\n" + ORDERING_HINT if with_ordering else ""))
     parts.append(OUTPUT_INSTRUCTIONS)
     return "\n\n".join(parts)
 
@@ -40,7 +41,7 @@ EXPERIMENTS = {
         "prev_frame": False,
     },
     "E2_protocol": {
-        "prompt": _build(QUESTION_SINGLE, with_descriptions=True),
+        "prompt": _build(QUESTION_SINGLE, with_descriptions=True, with_ordering=True),
         "prev_frame": False,
     },
     "E3_prev_frame": {
@@ -48,8 +49,12 @@ EXPERIMENTS = {
         "prev_frame": True,
     },
     "E4_protocol_prev": {
-        "prompt": _build(QUESTION_PREV, with_descriptions=True),
+        "prompt": _build(QUESTION_PREV, with_descriptions=True, with_ordering=True),
         "prev_frame": True,
+    },
+        "E5_descriptions_only": {
+        "prompt": _build(QUESTION_SINGLE, with_descriptions=True, with_ordering=False),
+        "prev_frame": False,
     },
 }
 
