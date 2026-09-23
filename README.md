@@ -4,7 +4,6 @@
 
 This project builds a labelled evaluation set from the [Breakfast Actions dataset](https://serre.lab.brown.edu/breakfast-actions-dataset.html), runs a vision-language model over it through a Python harness, scores the results against a majority-class baseline, and tests how prompt design and added context change accuracy.
 
-It is a small-scale version of a real problem: a system watching someone carry out a multi-step procedure — a lab protocol, say — and working out what step they are on.
 
 **Headline result:** Gemini 3.1 Flash-Lite reached **74.1% accuracy** on a held-out test set of 54 frames, against a **33.3% baseline**. Every attempt to help the model with extra context made it worse, and accuracy depended far more on whether a frame was legible at all than on the prompt.
 
@@ -184,7 +183,7 @@ procedure-vlm-eval/
 cd procedure-vlm-eval
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env        # add a Gemini API key from aistudio.google.com/apikey
+cp .env.example .env        # add a Gemini API key
 ```
 
 Download the tea videos and coarse segmentation annotations from the dataset page into `data/`, then:
@@ -196,7 +195,7 @@ python3 src/run_model.py E1_bare --split dev    # run an experiment
 python3 src/score.py E1_bare --split dev        # score it
 ```
 
-`run_model.py` resumes where it left off, so it is safe to rerun if the free tier rate-limits it. Add `--dry-run` to test the pipeline without API calls, or `--provider claude` to use the Anthropic API instead.
+`run_model.py` resumes where it left off, so it is safe to rerun if the free tier rate-limits it. 
 
 ---
 
