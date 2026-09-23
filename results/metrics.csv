@@ -1,3 +1,4 @@
 experiment,split,n,accuracy,ci_low,ci_high,balanced_accuracy,invalid_rate,acc_clear_frames,n_clear,acc_ambiguous_frames,n_ambiguous,recall_take_cup,recall_add_teabag,recall_pour_water,mean_conf_correct,mean_conf_wrong
 baseline_majority,dev,35,0.4286,0.2798,0.5914,0.3333,0.0,0.2609,23,0.75,12,0.0,1.0,0.0,,
 baseline_majority,test,54,0.3333,0.2224,0.4664,0.3333,0.0,0.2258,31,0.4783,23,1.0,0.0,0.0,,
+E1_bare,dev,35,0.8571,0.7062,0.9374,0.8889,0.0,0.9565,23,0.6667,12,1.0,0.6667,1.0,0.92,0.82
